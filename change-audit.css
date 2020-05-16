@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/*******************导航栏*****************/
+
+#menubar{
+    margin: 0 auto;
+    position: absolute;
+    list-style-type: none;
+    width: 100%;
+}
+#menubar li{
+    display: inline-block;
+    cursor: pointer;
+	margin-left: 100px;
+	margin-right: 120px;
+}
+#menubar a{
+    display: block;
+    height: 60px;
+    text-align: center;
+    text-decoration: none;
+    color:white;
+}
+
+
+
+
+/*********************菜单栏********************/
+#nav{
+    width: 120px;
+    float: left;
+    margin-left: -170px;
+    margin-top: 20px;
+}
+
+
+
+
+/****************审批前端核心代码*******************/
+
+.examineCenter{
+    width: 800px;
+    height: 420px;
+    margin: 0 auto;
+}
+
+.center_bottom input{
+    font-size:12px;
+    height:20px;
+    width:40px;
+    padding:2px;
+    vertical-align:middle;
+    text-align:center;
+    margin-bottom:6px;
+
+}
+.table_div{
+    width: 1400px;
+    padding:10px;
+    margin:0 auto;
+}
+
+.center_center{
+    height:550px;
+    width:100%;
+}
+.center_bottom{
+    width:1100px;
+    float:left;
+    line-height:35px;
+}
+.left_bottom{
+    height:35px;
+    width:12px;
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 500px;
+}
+.right_bottom{
+    height:35px;
+    width:15px;
+    float:left;
+}
+/**************************************表格内容***********************************/
+.table_content{
+    margin-top: 30px;
+    border:1px solid black;
+    width:1300px;
+    height:160px;
+   overflow-x:hidden;
+    overflow-y:auto;
+    margin-left: -30px;
+}
+.table_content table{
+    width:100%;
+    border:0;
+    border-collapse:collapse;
+    font-size:20px;
+}
+.table_content table tr:hover{
+    background-color:#C1EBFF;
+}
+.table_content table th{
+    border-collapse:collapse;
+    height:30px;
+    border-right:1px solid black;
+    border-bottom:1px solid black;
+}
+.table_content table td{
+    height:40px;
+    word-wrap:break-word;
+    width: 150px;
+    text-align:center;
+    vertical-align:middle;
+    border-right:1px solid black;
+    border-bottom:1px solid black;
+}
