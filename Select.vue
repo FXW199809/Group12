@@ -1,31 +1,7 @@
 <template>
-    <div>
-    <div class="ttop">
-        <div id="topimg">
-            <a target="_blank" class="p4">财务管理员
-                {{ this.resData }}
-            </a>
-            <a target="_blank" class="p5">登录/退出登录</a>
-        </div>
-    </div>
-    <div class="top">
-        <div class="topinside">
-            <!-- <input type="button" class="btn" value="主页">
-            <input type="button" class="btn" value="账号管理">
-            <input type="button" class="btn" value="提交表单">
-            <input type="button" class="btn" value="查看账单"> -->
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
-                <el-menu-item index="ManageFrame" class="btn2" @click="skip('ManageFrame')">主页</el-menu-item>
-                <el-menu-item index="ManageUser1" class="btn2" @click="skip('ManageUser1')">账号管理</el-menu-item>
-                <el-menu-item index="3" class="btn2" @click="skip('Examine')">工资发放</el-menu-item>
-                <el-menu-item index="Select" class="btn2" @click="skip('Select')">员工查询</el-menu-item>
-                <el-menu-item index="ChangeInfo" class="btn2" @click="skip('ChangeInfo')">个人信息修改</el-menu-item>
-                <el-menu-item index="6" class="btn2">数据汇总</el-menu-item>
-            </el-menu>
-        </div>
-    </div>
-    <div class="center clearfix">
-        <div id="center-top">
+<div class="Select">
+<div class="center clearfix">
+        <div id="center-top" style="margin-top: 15px;">
             <!--查询框-->
             <el-input placeholder="请输入职工号进行查询" v-model="UserId" class="input-with-select">
                 <el-button slot="append" icon="el-icon-search" @click="doGet"></el-button>
@@ -56,20 +32,8 @@
     </div>
     <div class="selectCenter"></div>
     </div>
-    <div class="foot">
-        <p>
-            <a class="p1" target="_blank">
-                <i class="icon"></i>
-                四川师范大学官方微博
-            </a>
-        </p>
-        <br>
-        <p class="p2">2017级4班第12小组版权所有（技术支持：2017级4班第12小组）联系电话：028-8488888</p>
-    </div>
-    </div>
-
+</div>
 </template>
-
 <script>
 import Vue from 'vue';
 export default {
@@ -146,8 +110,37 @@ export default {
 </script>
 
 <style scoped>
-    @import "../css/select.css";
-    .el-input {
+/**************中部*/
+.center {
+    width: 80%;
+    margin: 0 auto;
+}
+.el-input {
         width: 230px;
     }
+/**********清除浮动**************/
+.clearfix:after{
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    *zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+}
+
+
+/**************************查询工资前端样式**********************/
+.selectCenter{
+    width: 800px;
+    height: 220px;
+    margin: 0 auto;
+}
+#center-top p{
+    padding-top: 20px;
+    padding-left: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
 </style>

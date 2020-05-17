@@ -1,31 +1,7 @@
 <template>
-    <div>
-    <div class="ttop">
-        <div id="topimg">
-            <a target="_blank" class="p4">财务管理员
-                {{ this.info }}
-            </a>
-            <a target="_blank" class="p5">登录/退出登录</a>
-        </div>
-    </div>
-    <div class="top">
-        <div class="topinside">
-            <!-- <input type="button" class="btn" value="主页">
-            <input type="button" class="btn" value="账号管理">
-            <input type="button" class="btn" value="提交表单">
-            <input type="button" class="btn" value="查看账单"> -->
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
-                <el-menu-item index="ManageFrame" class="btn2" @click="skip('ManageFrame')">主页</el-menu-item>
-                <el-menu-item index="ManageUser1" class="btn2" @click="skip('ManageUser1')">账号管理</el-menu-item>
-                <el-menu-item index="3" class="btn2" @click="skip('Examine')">工资发放</el-menu-item>
-                <el-menu-item index="Select" class="btn2" @click="skip('Select')">员工查询</el-menu-item>
-                <el-menu-item index="3" class="btn2" @click="skip('ChangeInfo')">个人信息修改</el-menu-item>
-                <el-menu-item index="ChangeInfo" class="btn2">数据汇总</el-menu-item>
-            </el-menu>
-        </div>
-    </div>
+    <div class="Examine4">
         <div class="center clearfix"> 
-            <div id="nav">
+            <div id="nav" style="margin-top: 15px;">
                 <el-row>
                     <el-button type="info" plain @click="skip('Examine')">工资变动审核</el-button>
                     <el-button type="info" plain @click="skip('Examine2')">补贴审核</el-button>
@@ -67,16 +43,6 @@
             <div class="examineCenter">
 
             </div>
-    </div>
-    <div class="foot">
-        <p>
-            <a class="p1" target="_blank">
-                <i class="icon"></i>
-                四川师范大学官方微博
-            </a>
-        </p>
-        <br>
-        <p class="p2">2017级4班第12小组版权所有（技术支持：2017级4班第12小组）联系电话：028-8488888</p>
     </div>
     </div>
 
@@ -162,23 +128,8 @@ export default {
 }
 </script>
 <style scoped>
-    @import "../css/examines/change-audit.css";
-    @import "../css/PayFrame.css";
-</style>
-<style lang="less">
-    /*********通过.el-card /deep/ 可以只更改当前页面的元素样式
-el-card__body可以在浏览器中找到 不能加scoped,否则改变不了样式  
-********************/  
-.el-row{ 
-    width: 150px;
-    /deep/.el-button{
-        width: 150px;
-        padding: 10px;
-        margin: 0;
-    }
+.Examine4{
+    width: 80%;
+    margin-left: 10%;
 }
-.el-table{
-    margin-top: 30px;
-}
-
 </style>
