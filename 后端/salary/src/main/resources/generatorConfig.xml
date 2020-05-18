@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<!-- mysql-connector位置的绝对路径 -->
+  <classPathEntry location="F:\Workspace\salary\src\main\webapp\WEB-INF\lib\mysql-connector-java-8.0.19.jar" />   
+  <context id="msqlTables" targetRuntime="MyBatis3">    
+  <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>   
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/salary?serverTimezone=GMT%2B8"
+     driverClass="com.mysql.cj.jdbc.Driver" password="root" userId="root" >
+    
+    <property name="nullCatalogMeansCurrent" value="true"/>
+    </jdbcConnection>
+    <javaTypeResolver>    
+            <property name="forceBigDecimals" value="false" />    
+        </javaTypeResolver>    
+    <javaModelGenerator targetPackage="com.group12.salary.model" targetProject="salary\src\main\java">    
+            <property name="enableSubPackages" value="true"/>    
+            <!-- 从数据库返回的值被清理前后的空格  -->    
+            <property name="trimStrings" value="true" />    
+        </javaModelGenerator>    
+     <sqlMapGenerator targetPackage="mapping" targetProject="salary\src\main\resources">    
+            <property name="enableSubPackages" value="true"/>    
+        </sqlMapGenerator>    
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.group12.salary.dao" targetProject="salary\src\main\java">    
+            <property name="enableSubPackages" value="true"/>    
+    </javaClientGenerator>  
+
+          <!--数据库表-->
+        <table tableName="t_change" domainObjectName="ChangeDAO"></table>
+        <table tableName="t_deduct" domainObjectName="DeductDAO"></table>
+        <table tableName="t_department" domainObjectName="DepartmentDAO"></table>
+        <table tableName="t_error" domainObjectName="ErrorDAO"></table>
+        <table tableName="t_group" domainObjectName="GroupDAO"></table>
+        <table tableName="t_group_right" domainObjectName="GroupRightDAO"></table>
+        <table tableName="t_group_role" domainObjectName="GroupRoleDAO"></table>
+        <table tableName="t_operation_log" domainObjectName="OperationLogDAO"></table>
+        <table tableName="t_right" domainObjectName="RightDAO"></table>
+        <table tableName="t_role" domainObjectName="RoleDAO"></table>
+        <table tableName="t_role_right" domainObjectName="RoleRightDAO"></table>
+        <table tableName="t_salary" domainObjectName="SalaryDAO"></table>
+        <table tableName="t_subsidy" domainObjectName="SubsidyDAO"></table>
+        <table tableName="t_user" domainObjectName="UserDAO"></table>
+        <table tableName="t_user_group" domainObjectName="UserGroupDAO"></table>
+        <table tableName="t_user_right" domainObjectName="UserRightDAO"></table>
+        <table tableName="t_user_role" domainObjectName="UserRole"></table>       
+  </context>
+</generatorConfiguration>

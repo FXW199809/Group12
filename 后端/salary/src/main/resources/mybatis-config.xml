@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--配置mybatis的运行环境-->
+    <!--可以配置多个数据源如a, b, c...，但是只能调用一个a/b/c-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置jdbc的事务管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--数据库连接时用POOLED配置JDBC数据源连接池-->
+            <dataSource type="POOLED">
+                <!--驱动-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!--和哪个数据库进行连接-->
+                <property name="url" value="jdbc:mysql://localhost:3306/salary?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
+                <!--用户名和密码-->
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--注册mapper.xml-->
+    <mappers>
+        <mapper resource="mapping/SalaryDAOMapper.xml"/>
+        <mapper resource="mapping/ChangeDAOMapper.xml"/>
+        <mapper resource="mapping/SubsidyDAOMapper.xml"/>
+        <mapper resource="mapping/DeductDAOMapper.xml"/>
+        <mapper resource="mapping/ErrorDAOMapper.xml"/>
+        <mapper resource="mapping/UserDAOMapper.xml"/>
+        <mapper resource="mapping/RoleDAOMapper.xml"/>
+        <mapper resource="mapping/RightDAOMapper.xml"/>
+        <mapper resource="mapping/UserRoleMapper.xml"/>
+        <mapper resource="mapping/UserRightDAOMapper.xml"/>
+
+    </mappers>
+</configuration>

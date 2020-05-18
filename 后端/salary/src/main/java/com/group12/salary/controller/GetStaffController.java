@@ -1,0 +1,51 @@
+package com.group12.salary.controller;
+
+import com.group12.salary.dao.SalaryDAOMapper;
+import com.group12.salary.model.SalaryDAO;
+import com.group12.salary.model.SalaryDAOExample;
+import com.group12.salary.config.MapperTools;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.util.List;
+
+
+@RestController
+public class GetStaffController {
+
+	//查询员工
+	@RequestMapping("/getStaffSearch")
+	public @ResponseBody List<SalaryDAO> getStaffSearch(String UserId) throws IOException {
+		SqlSession sqlSession = MapperTools.getSqlSession();
+		SalaryDAOMapper salaryDAOMapper = sqlSession.getMapper(SalaryDAOMapper.class);
+
+		SalaryDAOExample salaryDAOExample = new SalaryDAOExample();
+		SalaryDAOExample.Criteria criteria = salaryDAOExample.createCriteria();
+
+		criteria.andUserIdEqualTo(UserId).andStatusEqualTo(1);
+		List<SalaryDAO> salaryDAOList = salaryDAOMapper.selectByExample(salaryDAOExample);
+		//关闭sqlsession,避免资源浪费
+		sqlSession.close();
+	    return salaryDAOList;
+    }
+
+    //���ܹ���ʵ�֣���ʾԱ�����ʱ�
+	@RequestMapping("/getStaffGather")
+	public List<SalaryDAO> getStaffGather() throws IOException {
+		SqlSession sqlSession = MapperTools.getSqlSession();
+
+		SalaryDAOMapper salaryDAOMapper = sqlSession.getMapper(SalaryDAOMapper.class);
+		SalaryDAOExample salaryDAOExample = new SalaryDAOExample();
+		SalaryDAOExample.Criteria criteria = salaryDAOExample.createCriteria();
+		//查询已经审核过的工资
+		criteria.andStatusEqualTo(1);
+		List<SalaryDAO> salaryDAOList = salaryDAOMapper.selectByExample(salaryDAOExample);
+
+		sqlSession.close();
+		return salaryDAOList;
+	}
+
+}
