@@ -5,6 +5,7 @@ import com.group12.salary.model.SalaryDAO;
 import com.group12.salary.model.SalaryDAOExample;
 import com.group12.salary.config.MapperTools;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ public class GetStaffController {
 
 	//查询员工
 	@RequestMapping("/getStaffSearch")
+	@RequiresRoles("财务管理员")
 	public @ResponseBody List<SalaryDAO> getStaffSearch(String UserId) throws IOException {
 		SqlSession sqlSession = MapperTools.getSqlSession();
 		SalaryDAOMapper salaryDAOMapper = sqlSession.getMapper(SalaryDAOMapper.class);
@@ -34,6 +36,7 @@ public class GetStaffController {
 
     //���ܹ���ʵ�֣���ʾԱ�����ʱ�
 	@RequestMapping("/getStaffGather")
+	@RequiresRoles("财务管理员")
 	public List<SalaryDAO> getStaffGather() throws IOException {
 		SqlSession sqlSession = MapperTools.getSqlSession();
 

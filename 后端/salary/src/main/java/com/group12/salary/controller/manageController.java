@@ -3,8 +3,10 @@ package com.group12.salary.controller;
 import com.group12.salary.config.MapperTools;
 import com.group12.salary.dao.UserDAOMapper;
 import com.group12.salary.dao.UserRightDAOMapper;
+import com.group12.salary.dao.UserRoleMapper;
 import com.group12.salary.model.*;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 public class manageController {
     @RequestMapping("/getUserInfoList")
+    @RequiresRoles("财务管理员")
     public List<UserInfo> getUserInfoList() throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         //查询所有user
@@ -44,6 +47,7 @@ public class manageController {
         return UserInfoList;
     }
     @RequestMapping("/addUser")
+    @RequiresRoles("财务管理员")
     public boolean addUser(String userid,String password,String name,String bankCard,String departmentId,String title,Integer workingAge,long right)throws IOException{
         SqlSession sqlSession = MapperTools.getSqlSession();
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
@@ -63,12 +67,19 @@ public class manageController {
         userRightDAO.setUserId(userid);
         userRightDAOMapper.insert(userRightDAO);
 
+        UserRoleMapper userRoleMapper = sqlSession.getMapper(UserRoleMapper.class);
+        UserRole userRole = new UserRole();
+        userRole.setRoleId(right);
+        userRole.setUserId(userid);
+        userRoleMapper.insert(userRole);
+
         sqlSession.commit();
         sqlSession.close();
         return true;
     };
 
     @RequestMapping("/deleteUser")
+    @RequiresRoles("财务管理员")
     public boolean deleteUser(String userid) throws IOException{
         SqlSession sqlSession = MapperTools.getSqlSession();
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
@@ -81,6 +92,7 @@ public class manageController {
     }
 
     @RequestMapping("/updateUser")
+    @RequiresRoles("财务管理员")
     public boolean updateUser(String userid,String password,String name,String bankCard,String departmentId,String title,Integer workingAge,long right)throws IOException{
         SqlSession sqlSession = MapperTools.getSqlSession();
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
@@ -99,6 +111,12 @@ public class manageController {
         userRightDAO.setRightId(right);
         userRightDAO.setUserId(userid);
         userRightDAOMapper.updateByPrimaryKey(userRightDAO);
+
+        UserRoleMapper userRoleMapper = sqlSession.getMapper(UserRoleMapper.class);
+        UserRole userRole = new UserRole();
+        userRole.setRoleId(right);
+        userRole.setUserId(userid);
+        userRoleMapper.updateByPrimaryKey(userRole);
 
         sqlSession.commit();
         sqlSession.close();

@@ -3,6 +3,7 @@ package com.group12.salary.controller;
 import com.group12.salary.config.ExcelUtil;
 import com.group12.salary.model.SalaryDAO;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class ExportController {
     private static GetStaffController getStaffController = new GetStaffController();
 
     @RequestMapping(value = "/exportSalaryManager")
+    @RequiresRoles("财务管理员")//财务管理员角色
     public boolean exportSalaryManager(String fileName, String filePath) throws IOException {
 
         List<SalaryDAO> salaryDAOList = getStaffController.getStaffGather();

@@ -21,12 +21,10 @@ public class SalaryRealm<UsersService> extends AuthorizingRealm {
 //        Users user = userService.findByUserName(username);
 //        user.setLocked(true);   //登录成功后锁定用户
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-
         //根据用户名查找对应的角色集合
         authorizationInfo.setRoles(usersService.findRole(userId));
         //根据用户名查找对应的资源集合
         authorizationInfo.setStringPermissions(usersService.findRight(userId));
-
         return authorizationInfo;
     }
 

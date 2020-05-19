@@ -4,6 +4,7 @@ import com.group12.salary.config.MapperTools;
 import com.group12.salary.dao.UserDAOMapper;
 import com.group12.salary.model.UserDAO;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,9 +44,10 @@ public class UpdatePassController {
     }*/
 
     @RequestMapping("/change")
+    @RequiresAuthentication//已登录
     public int UpdatePass(String userID,String oldPassword,String newPassword) throws IOException{
         SqlSession sqlSession = MapperTools.getSqlSession();
-
+        //UserDAO userDAO = (UserDAO) SecurityUtils.getSubject();
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
         UserDAO userDAO=new UserDAO();
         userDAO=userDAOMapper.selectByPrimaryKey(userID);

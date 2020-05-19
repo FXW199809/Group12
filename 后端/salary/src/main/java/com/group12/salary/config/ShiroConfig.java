@@ -19,13 +19,18 @@ public class ShiroConfig {
         // 必须设置SecuritManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 拦截器
+        /**
+         * Shiro 内置过滤器，过滤链定义，从上向下顺序执行
+         *  常用的过滤器：
+         *      anon:无需认证（登录）可以访问
+         *      authc:必须认证才可以访问
+         *      user:只要登录过，并且记住了密码，如果设置了rememberMe的功能可以直接访问
+         *      perms:该资源必须得到资源权限才可以访问
+         *      role:该资源必须得到角色的权限才可以访问
+         */
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/","anon");
         filterChainDefinitionMap.put("/login","anon");
-        filterChainDefinitionMap.put("/student/add", "perms[/student/add]");
-        filterChainDefinitionMap.put("/student/delete", "perms[/student/delete]");
-        filterChainDefinitionMap.put("/student/update", "perms[/student/update]");
-        filterChainDefinitionMap.put("/student/select", "perms[/student/select]");
         // 配置退出过滤器,其中的具体代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
         // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边

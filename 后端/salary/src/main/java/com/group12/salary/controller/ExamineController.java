@@ -5,6 +5,7 @@ import com.group12.salary.config.MapperTools;
 import com.group12.salary.dao.*;
 import com.group12.salary.model.*;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class ExamineController {
 
     @RequestMapping("/getSalaryList")
+    @RequiresRoles("财务管理员")
     public List<SalaryDAO> getSalaryList() throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         SalaryDAOMapper salaryDAOMapper = sqlSession.getMapper(SalaryDAOMapper.class);
@@ -29,6 +31,7 @@ public class ExamineController {
         return salaryDAOList;
     }
     @RequestMapping("/getDeductList")
+    @RequiresRoles("财务管理员")
     public List<DeductDAO> getDeductList() throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         DeductDAOMapper deductDAOMapper = sqlSession.getMapper(DeductDAOMapper.class);
@@ -42,6 +45,7 @@ public class ExamineController {
         return deductDAOList;
     }
     @RequestMapping("/getSubsidyList")
+    @RequiresRoles("财务管理员")
     public List<SubsidyDAO> getSubsidyList() throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         SubsidyDAOMapper subsidyDAOMapper = sqlSession.getMapper(SubsidyDAOMapper.class);
@@ -55,6 +59,7 @@ public class ExamineController {
         return subsidyDAOList;
     }
     @RequestMapping("/getChangeList")
+    @RequiresRoles("财务管理员")
     public List<ChangeDAO> getChangeList() throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         ChangeDAOMapper changeDAOMapper = sqlSession.getMapper(ChangeDAOMapper.class);
@@ -68,6 +73,7 @@ public class ExamineController {
         return changeDAOList;
     }
     @RequestMapping("/getErrorList")
+    @RequiresRoles("财务管理员")
     public List<ErrorDAO> getErrorList() throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         ErrorDAOMapper errorDAOMapper = sqlSession.getMapper(ErrorDAOMapper.class);
@@ -82,6 +88,7 @@ public class ExamineController {
     }
 
     @RequestMapping("/updateSalaryStatus")
+    @RequiresRoles("财务管理员")
     public boolean updateSalaryStatus(long id, int status) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         SalaryDAOMapper salaryDAOMapper = sqlSession.getMapper(SalaryDAOMapper.class);
@@ -96,6 +103,7 @@ public class ExamineController {
         return true;
     }
     @RequestMapping("/updateErrorStatus")
+    @RequiresRoles("财务管理员")
     public boolean updateErrorStatus(long id, int status) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         ErrorDAOMapper errorDAOMapper = sqlSession.getMapper(ErrorDAOMapper.class);
@@ -110,6 +118,7 @@ public class ExamineController {
         return true;
     }
     @RequestMapping("/updateChangeStatus")
+    @RequiresRoles("财务管理员")
     public boolean updateChangeStatus(long id, int status) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         ChangeDAOMapper changeDAOMapper = sqlSession.getMapper(ChangeDAOMapper.class);
@@ -124,6 +133,7 @@ public class ExamineController {
         return true;
     }
     @RequestMapping("/updateSubsidyStatus")
+    @RequiresRoles("财务管理员")
     public boolean updateSubsidyStatus(long id, int status) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         SubsidyDAOMapper subsidyDAOMapper = sqlSession.getMapper(SubsidyDAOMapper.class);
@@ -138,6 +148,7 @@ public class ExamineController {
         return true;
     }
     @RequestMapping("/updateDeductStatus")
+    @RequiresRoles("财务管理员")
     public boolean updateDeductStatus(long id, int status) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
         DeductDAOMapper deductDAOMapper = sqlSession.getMapper(DeductDAOMapper.class);

@@ -11,6 +11,7 @@ import com.group12.salary.model.DeductDAO;
 import com.group12.salary.model.ErrorDAO;
 import com.group12.salary.model.SubsidyDAO;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,7 @@ public class uploadController {
      * @throws IOException
      */
     @RequestMapping("/downloadSubsidyExcel")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean downloadSubsidyExcel(HttpServletResponse response,HttpServletRequest request) {
         //方法一：直接下载路径下的文件模板
@@ -65,6 +67,7 @@ public class uploadController {
      * @throws IOException
      */
     @RequestMapping("/downloadDeductExcel")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean downloadDeductExcel(HttpServletResponse response,HttpServletRequest request) {
         //方法一：直接下载路径下的文件模板
@@ -101,6 +104,7 @@ public class uploadController {
      * @throws IOException
      */
     @RequestMapping("/downloadChangeExcel")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean downloadChangeExcel(HttpServletResponse response,HttpServletRequest request) {
         //方法一：直接下载路径下的文件模板
@@ -137,6 +141,7 @@ public class uploadController {
      * @throws IOException
      */
     @RequestMapping("/downloadErrorExcel")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean downloadErrorExcel(HttpServletResponse response,HttpServletRequest request) {
         //方法一：直接下载路径下的文件模板
@@ -172,6 +177,7 @@ public class uploadController {
      * 上传文件
      */
     @RequestMapping("/uploadSubsidy")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean uploadSubsidy(HttpServletRequest request,@RequestParam("SubsidyExcelFile") MultipartFile file) throws IOException {
         //String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
@@ -191,6 +197,7 @@ public class uploadController {
         return true;
     }
     @RequestMapping("/uploadDeduct")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean uploadDeduct(HttpServletRequest request,@RequestParam("DeductExcelFile") MultipartFile file) throws IOException {
         //String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
@@ -210,6 +217,7 @@ public class uploadController {
         return true;
     }
     @RequestMapping("/uploadError")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean uploadError(HttpServletRequest request,@RequestParam("ErrorExcelFile") MultipartFile file) throws IOException {
         //String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
@@ -229,6 +237,7 @@ public class uploadController {
         return true;
     }
     @RequestMapping("/uploadChange")
+    @RequiresRoles("院系管理员")
     @ResponseBody
     public boolean uploadChange(HttpServletRequest request,@RequestParam("ChangeExcelFile") MultipartFile file) throws IOException {
         //String fileName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
