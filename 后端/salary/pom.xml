@@ -30,7 +30,22 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-	<dependency>
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-thymeleaf</artifactId>
+		  <!--(2020/5/18) Spring Boot默认的日志框架Logback，所以我们在引入log4j之前，需要先排除该包的依赖，再引入log4j的依赖-->
+		  <exclusions>
+			  <exclusion>
+				  <groupId>ch.qos.logback</groupId>
+				  <artifactId>logback-classic</artifactId>
+			  </exclusion>
+			  <exclusion>
+				  <artifactId>log4j-over-slf4j</artifactId>
+				  <groupId>org.slf4j</groupId>
+			  </exclusion>
+		  </exclusions>
+	  </dependency>
+	  <dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-thymeleaf</artifactId>
 	</dependency>
@@ -99,7 +114,17 @@
 		  <groupId>org.projectlombok</groupId>
 		  <artifactId>lombok</artifactId>
 	  </dependency>
-
+	  <!--2020/5/13-->
+	  <!--log4j依赖-->
+	  <dependency>
+		  <groupId>log4j</groupId>
+		  <artifactId>log4j</artifactId>
+		  <version>1.2.17</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-log4j12</artifactId>
+	  </dependency>
   </dependencies>
   <build>
 	  <!-- 添加构建工具 -->
