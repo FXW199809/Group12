@@ -104,21 +104,7 @@ export default {
           working_age:'',
           right_name:'',
         },
-        tableData: [
-          {
-            userId:'daw',
-          name:'sad',
-          password:"ads",
-          email:'ads',
-          telephone:'ad',
-          bankcard:'we',
-          department_name:'ad',
-          title:'ad',
-          working_age:'ad',
-          right_name:'adsd',
-          }
-
-        ],
+        tableData: [],
         //接收指定删除数据的userid
         listId:'',
         //接收指定删除数据的的索引
@@ -199,11 +185,11 @@ export default {
 
         })
         .catch(_ => {"内部异常"});
-        },
+        },*/
       // 点击模态框关闭按钮关闭模态框
       closeDialog(){
         this.editUserForm = false;
-      },*/
+      },
           // 点击编辑按钮
           UpdTabColOne(index,row){
           this.editUserForm = true; //编辑信息模态框显示

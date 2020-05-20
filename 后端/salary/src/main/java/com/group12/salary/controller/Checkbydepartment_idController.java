@@ -8,6 +8,7 @@ import com.group12.salary.model.UserDAO;
 import com.group12.salary.model.UserDAOExample;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 public class Checkbydepartment_idController  {
-
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getUserSalaryList")
     public List<SalaryDAO> getSalaryList() throws IOException
 

@@ -19,7 +19,10 @@ import Examine5 from '@/components/Examine5'
 import InsertStaff from '@/components/InsertStaff'
 import CheckSalary from '@/components/CheckSalary'
 
-import AppIndex from '../components/AppIndex.vue'
+import doc1 from '@/components/doc1.vue'
+import doc2 from '@/components/doc2.vue'
+import doc3 from '@/components/doc3.vue'
+import doc4 from '@/components/doc4.vue'
 import Change from '../components/Change.vue'
 Vue.use(Router)
 
@@ -97,7 +100,25 @@ export default new Router({
         },
         {
           path:'/Senddoc',
-          component: Senddoc
+          component: Senddoc,
+          children:[
+            {
+              path:'/Senddoc',
+              component:doc1
+            },
+            {
+              path:'/doc2',
+              component:doc2
+            },
+            {
+              path:'/doc3',
+              component:doc3
+            },
+            {
+              path:'/doc4',
+              component:doc4
+            },
+          ]
         },{
           path: '/Yuanxi/ChangeInfo',
           component:ChangeInfo

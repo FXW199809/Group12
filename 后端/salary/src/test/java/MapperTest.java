@@ -1,6 +1,7 @@
 import com.group12.salary.controller.ExamineController;
 import com.group12.salary.controller.ExportController;
 import com.group12.salary.controller.GetStaffController;
+import com.group12.salary.controller.uploadController;
 import com.group12.salary.model.ErrorDAO;
 import com.group12.salary.model.SalaryDAO;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,8 @@ public class MapperTest {
 
     @Test
     public static void main(String[] args) throws IOException, IllegalAccessException {
-
+        uploadController uploadController = new uploadController();
+        uploadController.uploadChange("1","20171101","张三","2990","2009","19970129");
         /*
         //查找员工测试
         GetStaffController getStaffController = new GetStaffController();
@@ -40,10 +42,12 @@ public class MapperTest {
         for(int i = 0; i < salaryDAOList.size(); i++){
             System.out.println(salaryDAOList.get(i).getName());
         }*/
-
+/*
         //汇总导出工资excel
         ExportController exportController = new ExportController();
         exportController.exportSalaryManager("myexport", "F:/");
+
+ */
     }
 
 

@@ -10,7 +10,7 @@
     </div>
   <div class="head">
         <router-link to="/Yuanximain">主页</router-link>
-        <router-link to="/Senddoc">提交表单</router-link>
+        <router-link to="/Senddoc">提交报错信息</router-link>
         <router-link to="/details">查看账单</router-link>
         <router-link to="/Yuanxi/ChangeInfo">个人信息修改</router-link>
   </div>

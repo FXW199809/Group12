@@ -4,16 +4,17 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import VueAxios from 'vue-axios'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$axios = axios;
-import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios);
+import qs from 'qs';
+Vue.prototype.$qs = qs;
 Vue.config.productionTip = false;
 //elementUI导入
 import ElementUI from '../node_modules/element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import qs from 'qs';
-Vue.prototype.$qs = qs;
+
 //import api from './api/index.js'
 //Vue.prototype.$api = api;
 

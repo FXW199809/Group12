@@ -135,7 +135,7 @@ public class ReadExcel {
                     BigDecimal advance = new BigDecimal(rs.getCell(j++, i).getContents());
                     BigDecimal other = new BigDecimal(rs.getCell(j++, i).getContents());
                     BigDecimal deductTotal = new BigDecimal(rs.getCell(j++, i).getContents());
-                    String subsidyUserId = rs.getCell(j++, i).getContents();
+                    String submitUserId = rs.getCell(j++, i).getContents();
                     Date submitDate = new Date();
                     int status = 0;
                     DeductDAO deductDAO = new DeductDAO();
@@ -148,7 +148,7 @@ public class ReadExcel {
                     deductDAO.setAdvance(advance);
                     deductDAO.setOther(other);
                     deductDAO.setDeductTotal(deductTotal);
-                    deductDAO.setSubmitUserId(subsidyUserId);
+                    deductDAO.setSubmitUserId(submitUserId);
                     deductDAO.setSubmitDate(submitDate);
                     deductDAO.setStatus(status);
                     list.add(deductDAO);
@@ -179,7 +179,7 @@ public class ReadExcel {
                     String item = rs.getCell(j++, i).getContents();
                     BigDecimal wrongData = new BigDecimal(rs.getCell(j++, i).getContents());
                     BigDecimal revisedData = new BigDecimal(rs.getCell(j++, i).getContents());
-                    String subsidyUserId = rs.getCell(j++, i).getContents();
+                    String submitUserId = rs.getCell(j++, i).getContents();
                     Date submitDate = new Date();
                     int status = 0;
                     ErrorDAO errorDAO = new ErrorDAO();
@@ -189,7 +189,7 @@ public class ReadExcel {
                     errorDAO.setItem(item);
                     errorDAO.setWrongData(wrongData);
                     errorDAO.setRevisedData(revisedData);
-                    errorDAO.setSubmitUserId(subsidyUserId);
+                    errorDAO.setSubmitUserId(submitUserId);
                     errorDAO.setSubmitDate(submitDate);
                     errorDAO.setStatus(status);
                     list.add(errorDAO);
@@ -219,7 +219,7 @@ public class ReadExcel {
                     String name = rs.getCell(j++, i).getContents();
                     BigDecimal beforeMoney = new BigDecimal(rs.getCell(j++, i).getContents());
                     BigDecimal afterMoney = new BigDecimal(rs.getCell(j++, i).getContents());
-                    String subsidyUserId = rs.getCell(j++, i).getContents();
+                    String submitUserId = rs.getCell(j++, i).getContents();
                     Date submitDate = new Date();
                     int status = 0;
                     ChangeDAO changeDAO = new ChangeDAO();
@@ -228,7 +228,7 @@ public class ReadExcel {
                     changeDAO.setName(name);
                     changeDAO.setBeforeMoney(beforeMoney);
                     changeDAO.setAfterMoney(afterMoney);
-                    changeDAO.setSubmitUserId(subsidyUserId);
+                    changeDAO.setSubmitUserId(submitUserId);
                     changeDAO.setSubmitDate(submitDate);
                     changeDAO.setStatus(status);
                     list.add(changeDAO);

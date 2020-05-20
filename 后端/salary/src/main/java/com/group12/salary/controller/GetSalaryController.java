@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.InputStream;
@@ -19,6 +20,7 @@ import java.io.InputStream;
  */
 
 @Controller
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("/getSalarySearch")
 public class GetSalaryController {
     public UserDAO getSalarySearch(String UserId){

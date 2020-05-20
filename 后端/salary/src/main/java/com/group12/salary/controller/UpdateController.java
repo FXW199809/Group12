@@ -3,6 +3,7 @@ import com.group12.salary.dao.UserDAOMapper;
 import com.group12.salary.model.UserDAO;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,6 +15,7 @@ import java.io.InputStream;
 
 
 @Controller
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping(value = "/ChangeInfo")
     public class UpdateController{
     public boolean ChangeInfo(String email, String telephone, String bank_card)

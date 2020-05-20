@@ -3,6 +3,7 @@ package com.group12.salary.controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,7 +42,7 @@ public class LoginController {
             return 200;
         }*//*
     }*/
-
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping(value="/login",produces = "application/json;charset=utf-8")
     public String login(String userid, String password) throws IOException {
        /* SqlSession sqlSession = MapperTools.getSqlSession();

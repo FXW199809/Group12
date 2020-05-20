@@ -1,4 +1,4 @@
-package com.group12.salary.Applacation;
+package com.group12.salary.Application;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

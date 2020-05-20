@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public class uploadController {
@@ -178,9 +180,11 @@ public class uploadController {
             return false;
         }
     }
+
     /**
      * 上传文件
      */
+    /*
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/uploadSubsidy")
     @RequiresRoles("院系管理员")
@@ -264,5 +268,146 @@ public class uploadController {
         sqlSession.commit();
         sqlSession.close();
         return true;
+    }*/
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/uploadSubsidy")
+    //@RequiresRoles("院系管理员")
+    @ResponseBody
+    public boolean uploadSubsidy(String id,String userid,String name,String food,String coal ,String transport,String subsidy1,String subsidy2,String subsidyTotal,String submitUserId) throws IOException {
+        if(null != userid && null != id){
+            SqlSession sqlSession = MapperTools.getSqlSession();
+            SubsidyDAOMapper subsidyDAOMapper = sqlSession.getMapper(SubsidyDAOMapper.class);
+            SubsidyDAO subsidyDAO = new SubsidyDAO();
+            Long i = new Long(id);
+            subsidyDAO.setId(i);
+            subsidyDAO.setUserId(userid);
+            subsidyDAO.setName(name);
+            BigDecimal f =new BigDecimal(food);
+            subsidyDAO.setFood(f);
+            BigDecimal c =new BigDecimal(coal);
+            subsidyDAO.setCoal(c);
+            BigDecimal t =new BigDecimal(transport);
+            subsidyDAO.setTransport(t);
+            BigDecimal s1 =new BigDecimal(subsidy1);
+            subsidyDAO.setSubsidy1(s1);
+            BigDecimal s2 =new BigDecimal(subsidy2);
+            subsidyDAO.setSubsidy2(s2);
+            BigDecimal s =new BigDecimal(subsidyTotal);;
+            subsidyDAO.setSubsidyTotal(s);
+            subsidyDAO.setSubmitUserId(submitUserId);
+            Date date = new Date();
+            subsidyDAO.setSubmitDate(date);
+            subsidyDAO.setStatus(0);
+            subsidyDAOMapper.insert(subsidyDAO);
+
+            sqlSession.commit();
+            sqlSession.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/uploadDeduct")
+    //@RequiresRoles("院系管理员")
+    @ResponseBody
+    public boolean uploadDeduct(String id,String userid,String name, String room, String waterElectric ,String children, String advance,String other, String deductTotal,String submitUserId) throws IOException {
+        if(null != userid && null != id){
+            SqlSession sqlSession = MapperTools.getSqlSession();
+            DeductDAOMapper deductDAOMapper = sqlSession.getMapper(DeductDAOMapper.class);
+            DeductDAO deductDAO = new DeductDAO();
+            Long i = new Long(id);
+            deductDAO.setId(i);
+            deductDAO.setUserId(userid);
+            deductDAO.setName(name);
+            BigDecimal r =new BigDecimal(room);
+            deductDAO.setRoom(r);
+            BigDecimal w =new BigDecimal(waterElectric);
+            deductDAO.setWaterElectric(w);
+            BigDecimal c =new BigDecimal(children);
+            deductDAO.setChildren(c);
+            BigDecimal a =new BigDecimal(advance);
+            deductDAO.setAdvance(a);
+            BigDecimal o =new BigDecimal(other);
+            deductDAO.setOther(o);
+            BigDecimal d =new BigDecimal(deductTotal);
+            deductDAO.setDeductTotal(d);
+            deductDAO.setSubmitUserId(submitUserId);
+            Date date = new Date();
+            deductDAO.setSubmitDate(date);
+            deductDAO.setStatus(0);
+            deductDAOMapper.insert(deductDAO);
+
+            sqlSession.commit();
+            sqlSession.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/uploadError")
+    //@RequiresRoles("院系管理员")
+    @ResponseBody
+    public boolean uploadError(String id,String userid,String name,String item,String wrongData,String revisedData ,String submitUserId) throws IOException {
+        if(null != userid && null != id){
+            SqlSession sqlSession = MapperTools.getSqlSession();
+            ErrorDAOMapper errorDAOMapper = sqlSession.getMapper(ErrorDAOMapper.class);
+            ErrorDAO errorDAO = new ErrorDAO();
+            Long i = new Long(id);
+            errorDAO.setId(i);
+            errorDAO.setUserId(userid);
+            errorDAO.setName(name);
+            errorDAO.setItem(item);
+            BigDecimal w =new BigDecimal(wrongData);
+            errorDAO.setWrongData(w);
+            BigDecimal r =new BigDecimal(revisedData);
+            errorDAO.setRevisedData(r);
+            errorDAO.setSubmitUserId(submitUserId);
+            Date date = new Date();
+            errorDAO.setSubmitDate(date);
+            errorDAO.setStatus(0);
+            errorDAOMapper.insert(errorDAO);
+
+            sqlSession.commit();
+            sqlSession.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/uploadChange")
+    //@RequiresRoles("院系管理员")
+    @ResponseBody
+    public boolean uploadChange(String id,String userid,String name,String beforeMoney,String afterMoney,String submitUserId) throws IOException {
+        if(null != userid && null != id){
+            SqlSession sqlSession = MapperTools.getSqlSession();
+            ChangeDAOMapper changeDAOMapper = sqlSession.getMapper(ChangeDAOMapper.class);
+            ChangeDAO changeDAO = new ChangeDAO();
+            Long i = new Long(id);
+            changeDAO.setId(i);
+            changeDAO.setUserId(userid);
+            changeDAO.setName(name);
+            BigDecimal b =new BigDecimal(beforeMoney);
+            changeDAO.setBeforeMoney(b);
+            BigDecimal a =new BigDecimal(afterMoney);
+            changeDAO.setAfterMoney(a);
+            changeDAO.setSubmitUserId(submitUserId);
+            Date date = new Date();
+            changeDAO.setSubmitDate(date);
+            changeDAO.setStatus(0);
+            changeDAOMapper.insert(changeDAO);
+
+            sqlSession.commit();
+            sqlSession.close();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
