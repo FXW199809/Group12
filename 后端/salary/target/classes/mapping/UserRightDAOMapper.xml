@@ -12,7 +12,7 @@
     <result column="right_id" jdbcType="BIGINT" property="rightId" />
     <result column="right_type" jdbcType="BIT" property="rightType" />
   </resultMap>
-  <select id="selectByUserID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByUserID" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from t_user_right

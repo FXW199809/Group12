@@ -8,6 +8,7 @@ import com.group12.salary.model.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @RestController
 public class ExamineController {
     Log4jUtil log4jUtil = new Log4jUtil();
-
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getSalaryList")
     @RequiresRoles("财务管理员")
     public List<SalaryDAO> getSalaryList() throws IOException {
@@ -33,6 +34,7 @@ public class ExamineController {
         sqlSession.close();
         return salaryDAOList;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getDeductList")
     @RequiresRoles("财务管理员")
     public List<DeductDAO> getDeductList() throws IOException {
@@ -47,6 +49,7 @@ public class ExamineController {
         sqlSession.close();
         return deductDAOList;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getSubsidyList")
     @RequiresRoles("财务管理员")
     public List<SubsidyDAO> getSubsidyList() throws IOException {
@@ -61,6 +64,7 @@ public class ExamineController {
         sqlSession.close();
         return subsidyDAOList;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getChangeList")
     @RequiresRoles("财务管理员")
     public List<ChangeDAO> getChangeList() throws IOException {
@@ -75,6 +79,7 @@ public class ExamineController {
         sqlSession.close();
         return changeDAOList;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getErrorList")
     @RequiresRoles("财务管理员")
     public List<ErrorDAO> getErrorList() throws IOException {
@@ -91,6 +96,7 @@ public class ExamineController {
     }
 
     //括号里面是接口路径，long id, int status是前端传进来的参数
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/updateSalaryStatus")
     @RequiresRoles("财务管理员")
     public boolean updateSalaryStatus(long id, int status) throws IOException {
@@ -121,6 +127,7 @@ public class ExamineController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/updateErrorStatus")
     @RequiresRoles("财务管理员")
     public boolean updateErrorStatus(long id, int status) throws IOException {
@@ -141,6 +148,7 @@ public class ExamineController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/updateChangeStatus")
     @RequiresRoles("财务管理员")
     public boolean updateChangeStatus(long id, int status) throws IOException {
@@ -161,6 +169,7 @@ public class ExamineController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/updateSubsidyStatus")
     @RequiresRoles("财务管理员")
     public boolean updateSubsidyStatus(long id, int status) throws IOException {
@@ -181,6 +190,7 @@ public class ExamineController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/updateDeductStatus")
     @RequiresRoles("财务管理员")
     public boolean updateDeductStatus(long id, int status) throws IOException {

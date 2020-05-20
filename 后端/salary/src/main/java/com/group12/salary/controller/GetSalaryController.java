@@ -5,7 +5,6 @@ import com.group12.salary.model.UserDAO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,7 +20,6 @@ import java.io.InputStream;
 
 @Controller
 @RequestMapping("/getSalarySearch")
-@RequiresRoles("院系管理员")
 public class GetSalaryController {
     public UserDAO getSalarySearch(String UserId){
 		/*

@@ -12,6 +12,7 @@ import com.group12.salary.model.ErrorDAO;
 import com.group12.salary.model.SubsidyDAO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,7 @@ public class uploadController {
      * 导出补贴模板
      * @throws IOException
      */
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/downloadSubsidyExcel")
     @RequiresRoles("院系管理员")
     @ResponseBody
@@ -66,6 +68,7 @@ public class uploadController {
      * 导出扣款模板
      * @throws IOException
      */
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/downloadDeductExcel")
     @RequiresRoles("院系管理员")
     @ResponseBody
@@ -103,8 +106,9 @@ public class uploadController {
      * 导出职工工资变动表模板
      * @throws IOException
      */
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/downloadChangeExcel")
-    @RequiresRoles("院系管理员")
+    //@RequiresRoles("院系管理员")
     @ResponseBody
     public boolean downloadChangeExcel(HttpServletResponse response,HttpServletRequest request) {
         //方法一：直接下载路径下的文件模板
@@ -140,6 +144,7 @@ public class uploadController {
      * 导出错误信息表模板
      * @throws IOException
      */
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/downloadErrorExcel")
     @RequiresRoles("院系管理员")
     @ResponseBody
@@ -176,6 +181,7 @@ public class uploadController {
     /**
      * 上传文件
      */
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/uploadSubsidy")
     @RequiresRoles("院系管理员")
     @ResponseBody
@@ -196,6 +202,7 @@ public class uploadController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/uploadDeduct")
     @RequiresRoles("院系管理员")
     @ResponseBody
@@ -216,6 +223,7 @@ public class uploadController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/uploadError")
     @RequiresRoles("院系管理员")
     @ResponseBody
@@ -236,6 +244,7 @@ public class uploadController {
         sqlSession.close();
         return true;
     }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/uploadChange")
     @RequiresRoles("院系管理员")
     @ResponseBody

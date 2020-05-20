@@ -69,24 +69,24 @@ public class LoginController {
         }else{
             return 200;
         }*/
-
         UsernamePasswordToken token = new UsernamePasswordToken(userid,password);
+        System.out.println(token);
         Subject subject = SecurityUtils.getSubject();
         try{
             //判断登陆
             subject.login(token);
         }catch (Exception e){
             e.printStackTrace();
-            return "login";
+            return "/";
         }
         if(subject.hasRole("用户")){
-            return "user";
+            return "/Normalmain";
         }else if(subject.hasRole("财务管理员")){
-            return "admin";
+            return "/HelloWorld";
         }else if(subject.hasRole("院系管理员")){
-            return "manager";
+            return "/Yuanximain";
         }else {
-            return "login";
+            return "/";
         }
     }
 

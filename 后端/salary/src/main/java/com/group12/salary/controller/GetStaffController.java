@@ -6,6 +6,7 @@ import com.group12.salary.model.SalaryDAOExample;
 import com.group12.salary.config.MapperTools;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.util.List;
 public class GetStaffController {
 
 	//查询员工
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping("/getStaffSearch")
 	@RequiresRoles("财务管理员")
 	public @ResponseBody List<SalaryDAO> getStaffSearch(String UserId) throws IOException {
@@ -35,6 +37,7 @@ public class GetStaffController {
     }
 
     //���ܹ���ʵ�֣���ʾԱ�����ʱ�
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping("/getStaffGather")
 	@RequiresRoles("财务管理员")
 	public List<SalaryDAO> getStaffGather() throws IOException {
