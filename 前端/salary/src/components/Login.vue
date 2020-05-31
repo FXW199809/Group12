@@ -1,5 +1,6 @@
 <template>
-  <div class="login_container">    <div class="login_box">
+  <div class="login_container">
+    <div class="login_box">
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="80px">
         <el-form-item label="用户名" prop="name">
           <el-input id="name" v-model="loginForm.name" placeholder="请输入用户名"></el-input>
@@ -86,10 +87,6 @@
         }
  */
         if(this.loginForm.userID!==""||this.loginForm.password!==""){
-
-
-
-
          axios.post("/login",
         {
           /* name:"lily",
@@ -250,14 +247,12 @@
         }
       };
 </script>
-
-<style>
-*,#app{
-  height:100%;
-  padding: 0;
-  margin: 0;
-}
+<style scoped>
 .login_container{
+  width: 100%;
+  height:  700px;
+  margin: 0 auto;
+  padding: 0;
   background-image: url(../assets/zhmm.jpg);
 }
 .login_box{
@@ -289,18 +284,38 @@
   height: 20px;
 }
 
+
+/*
+.login_container{
+  width: 100%;
+  height:  700px;
+  margin: 0 auto;
+  padding: 0;
+
+  background-image: url(../assets/zhmm.jpg);
+}
+.login_box{
+  width: 40%;
+  height: 300px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-left: 30%;
+  margin-top: 10%;
+
+}
+.el-form-item{
+  margin: 20px 5px;
+  height: 50px;
+}
+.btns{
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+.el-message{
+  height: 50px;
+}
+*/
+
 </style>
-info("联系管理员修改密码"); */
-
-      }
-      /* ,
-          forgetpassword(){
-            this.$message.info("联系管理员找回密码");
-
-          } */
-
-        }
-      };
-</script>
-
-

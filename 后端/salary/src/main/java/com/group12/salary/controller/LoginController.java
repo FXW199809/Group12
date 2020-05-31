@@ -1,12 +1,11 @@
 package com.group12.salary.controller;
 
 import com.group12.salary.config.MapperTools;
+import com.group12.salary.dao.RightDAOMapper;
 import com.group12.salary.dao.UserDAOMapper;
+import com.group12.salary.dao.UserRightDAOMapper;
 import com.group12.salary.dao.UserRoleDAOMapper;
-import com.group12.salary.model.UserDAO;
-import com.group12.salary.model.UserDAOExample;
-import com.group12.salary.model.UserRoleDAO;
-import com.group12.salary.model.UserRoleDAOExample;
+import com.group12.salary.model.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -73,18 +72,34 @@ public class LoginController {
         /* criteria.andUserIdEqualTo(userID);*/
         criteria.andNameEqualTo(name);
         List<UserDAO> userDAOList = userDAOMapper.selectByExample(userDAOExample);
+        //查询所有user_right
+        UserRightDAOMapper userRightDAOMapper = sqlSession.getMapper(UserRightDAOMapper.class);
+        UserRightDAOExample UserRightDAOExample = new UserRightDAOExample();
+        UserRightDAOExample.Criteria criteria1 = UserRightDAOExample.createCriteria();
+        criteria1.andUserIdIsNotNull();
+        List<UserRightDAO> UserRightDAOList = userRightDAOMapper.selectByExample(UserRightDAOExample);
         for (int i = 0; i < userDAOList.size(); i++) {
             System.out.println(userDAOList.get(i).getPassword());
             if(userDAOList.get(i).getPassword().equals(password)){
-                if(userDAOList.get(i).getTitle().equals("院系")){
-                    return "院系";
-                }else if(userDAOList.get(i).getTitle().equals("财务")){
-                    return "财务";
-                }else{
-                    return "用户";
+                UserDAO userDAO=userDAOList.get(i);
+                //本程序中user只对应一个right
+                if (null != userRightDAOMapper.selectByUserID(userDAO.getUserId())) {
+                    UserRightDAO userRightDAO = userRightDAOMapper.selectByUserID(userDAO.getUserId());
+                    //权限名
+                    RightDAOMapper rightDAOMapper = sqlSession.getMapper(RightDAOMapper.class);
+                    RightDAOExample RightDAOExample = new RightDAOExample();
+                    RightDAOExample.Criteria criteria3 = RightDAOExample.createCriteria();
+                    criteria3.andRightIdEqualTo(userRightDAO.getRightId());
+                    List<RightDAO> rightDAOList = rightDAOMapper.selectByExample(RightDAOExample);
+                    String rightName = rightDAOList.get(0).getRightName();
+                    if (rightName.equals("上传")) {
+                        return "院系";
+                    } else if (rightName.equals("管理")) {
+                        return "财务";
+                    } else {
+                        return "用户";
+                    }
                 }
-
-
                 // return 200;
             }
         }

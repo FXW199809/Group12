@@ -35,10 +35,6 @@
 <script>
 
   import axios from 'axios'
-
-
-
-
   export default{
     data(){
       let validateNewPassword=(rule,value,callback)=>{
@@ -61,11 +57,6 @@
           callback();
         }
       };
-
-
-
-
-
       return{
         form:{},
         rules:{
@@ -100,16 +91,8 @@
           }
         }) */
 
-
-
       this.$refs[formName].validate((valid)=>{
         if(valid){
-
-
-
-
-
-
        axios.post("/change",
         {
 
@@ -135,39 +118,24 @@
             this.$message.error('不存在，错误');
           }
         }
-
-
           //this.$router.push('/login')
         )
         .catch(err=>console.log(err));
-
-
-
-
           }else{
             return false;
           }
         });
-
-
-
-
-
       }
     },
   }
 </script>
-
-<style>
-  #app{
-  	height: 100%;
-  	margin: 0;
-  	padding: 0;
-  }
-
+<style scoped>
   .change_container{
-    background-image: url(../assets/zhmm.jpg);
-    height: 100%;
+  width: 100%;
+  height:  700px;
+  margin: 0 auto;
+  padding: 0;
+  background-image: url(../assets/zhmm.jpg);
   }
   .change_box{
     width: 450px;
@@ -178,24 +146,6 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%,-50%);
-        .avatar_box{
-          height: 130px;
-          width: 130px;
-          border: 1px solid #eee;
-          border-radius: 50%;
-          padding: 10px;
-          box-shadow: 0 0 10px #ddd;
-          position: absolute;
-          left: 50%;
-          transform: translate(-50%,-70%);
-          background-color: #fff;
-          img{
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: #eee;
-          }
-        }
   }
   .btns{
     display: flex;
