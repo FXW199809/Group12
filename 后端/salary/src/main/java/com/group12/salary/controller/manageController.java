@@ -15,6 +15,21 @@ import java.util.List;
 @RestController
 public class manageController {
     @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/getDepartmentList")
+    //@RequiresRoles("财务管理员")
+    public List<DepartmentDAO> getDepartmentList() throws IOException {
+        SqlSession sqlSession = MapperTools.getSqlSession();
+        //查询所有department
+        DepartmentDAOMapper departmentDAOMapper = sqlSession.getMapper(DepartmentDAOMapper.class);
+        DepartmentDAOExample departmentDAOExample = new DepartmentDAOExample();
+        DepartmentDAOExample.Criteria criteria = departmentDAOExample.createCriteria();
+        criteria.andDepartmentIdIsNotNull();
+        List<DepartmentDAO> DepartmentDAOList = departmentDAOMapper.selectByExample(departmentDAOExample);
+
+        sqlSession.close();
+        return DepartmentDAOList;
+    }
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/getUserInfoList")
     //@RequiresRoles("财务管理员")
     public List<UserInfo> getUserInfoList() throws IOException {
@@ -38,8 +53,8 @@ public class manageController {
             UserInfo userInfo = new UserInfo();
             UserDAO userDAO = UserDAOList.get(i);
             //本程序中user只对应一个right
-            if (null != userRightDAOMapper.selectByUserID(userDAO.getUserId())&&userRightDAOMapper.selectByUserID(userDAO.getUserId()).size()!=0){
-                UserRightDAO userRightDAO = userRightDAOMapper.selectByUserID(userDAO.getUserId()).get(0);
+            if (null != userRightDAOMapper.selectByUserID(userDAO.getUserId())){
+                UserRightDAO userRightDAO = userRightDAOMapper.selectByUserID(userDAO.getUserId());
                 //权限名
                 RightDAOMapper rightDAOMapper = sqlSession.getMapper(RightDAOMapper.class);
                 RightDAOExample RightDAOExample = new RightDAOExample();
@@ -57,6 +72,10 @@ public class manageController {
             userInfo.setTitle(userDAO.getTitle());
             userInfo.setUserId(userDAO.getUserId());
             userInfo.setWorking_age(userDAO.getWorkingAge());
+            userInfo.setDegree(userDAO.getDegree());
+            userInfo.setIdCard(userDAO.getIdCard());
+            userInfo.setOrigin(userDAO.getOrigin());
+            userInfo.setNation(userDAO.getNation());
             //院系名
             DepartmentDAOMapper departmentDAOMapper = sqlSession.getMapper(DepartmentDAOMapper.class);
             DepartmentDAOExample DepartmentDAOExample = new DepartmentDAOExample();
@@ -73,7 +92,7 @@ public class manageController {
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping(value = "/addUser")
     //@RequiresRoles("财务管理员")
-    public boolean addUser(String userid,String password,String name,String bankCard,String departmentId,String title,Integer workingAge,String right_name)throws IOException{
+    public boolean addUser(String userid,String password,String name,String id_card,String degree,String nation,String origin1,String origin2,String bankCard,String departmentId,String title,Integer workingAge,String right_name)throws IOException{
         SqlSession sqlSession = MapperTools.getSqlSession();
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
         UserDAO userDAO = new UserDAO();
@@ -86,6 +105,12 @@ public class manageController {
         userDAO.setWorkingAge(workingAge);
         userDAO.setEmail(null);
         userDAO.setTelephone(null);
+        userDAO.setNation(nation);
+        userDAO.setDegree(degree);
+        userDAO.setIdCard(id_card);
+        System.out.println(origin1);
+
+        userDAO.setOrigin(origin1+origin2);
         userDAOMapper.insert(userDAO);
 
         //rightId
@@ -102,8 +127,8 @@ public class manageController {
         userRightDAO.setRightType(false);
         userRightDAOMapper.insert(userRightDAO);
 
-        UserRoleMapper userRoleMapper = sqlSession.getMapper(UserRoleMapper.class);
-        UserRole userRole = new UserRole();
+        UserRoleDAOMapper userRoleMapper = sqlSession.getMapper(UserRoleDAOMapper.class);
+        UserRoleDAO userRole = new UserRoleDAO();
         userRole.setRoleId(rightid);
         userRole.setUserId(userid);
         userRoleMapper.insert(userRole);
@@ -124,9 +149,9 @@ public class manageController {
         criteria.andUserIdEqualTo(userid);
         userRightDAOMapper.deleteByExample(UserRightDAOExample);
 
-        UserRoleMapper userRoleMapper = sqlSession.getMapper(UserRoleMapper.class);
-        UserRoleExample UserRoleExample = new UserRoleExample();
-        UserRoleExample.Criteria criteria2 = UserRoleExample.createCriteria();
+        UserRoleDAOMapper userRoleMapper = sqlSession.getMapper(UserRoleDAOMapper.class);
+        UserRoleDAOExample UserRoleExample = new UserRoleDAOExample();
+        UserRoleDAOExample.Criteria criteria2 = UserRoleExample.createCriteria();
         criteria2.andUserIdEqualTo(userid);
         userRoleMapper.deleteByExample(UserRoleExample);
 
@@ -146,7 +171,7 @@ public class manageController {
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/updateUser")
     //@RequiresRoles("财务管理员")
-    public boolean updateUser(String userid,String password,String name,String email,String telephone,String bankCard,String departmentName,String title,Integer workingAge,String right_name)throws IOException{
+    public boolean updateUser(String userid,String password,String name,String email,String telephone,String bankCard,String departmentName,String title,Integer workingAge,String right_name,String id_card,String degree,String nation,String origin)throws IOException{
         SqlSession sqlSession = MapperTools.getSqlSession();
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
         UserDAO userDAO = new UserDAO();
@@ -154,6 +179,10 @@ public class manageController {
         userDAO.setPassword(password);
         userDAO.setName(name);
         userDAO.setBankCard(bankCard);
+        userDAO.setNation(nation);
+        userDAO.setDegree(degree);
+        userDAO.setIdCard(id_card);
+        userDAO.setOrigin(origin);
 
         //departmentId
         DepartmentDAOMapper departmentDAOMapper = sqlSession.getMapper(DepartmentDAOMapper.class);
@@ -183,8 +212,8 @@ public class manageController {
         userRightDAO.setRightType(false);
         userRightDAOMapper.updateByPrimaryKey(userRightDAO);
 
-        UserRoleMapper userRoleMapper = sqlSession.getMapper(UserRoleMapper.class);
-        UserRole userRole = new UserRole();
+        UserRoleDAOMapper userRoleMapper = sqlSession.getMapper(UserRoleDAOMapper.class);
+        UserRoleDAO userRole = new UserRoleDAO();
         userRole.setRoleId(rightid);
         userRole.setUserId(userid);
         userRoleMapper.updateByPrimaryKey(userRole);

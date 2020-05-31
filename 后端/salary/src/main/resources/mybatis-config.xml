@@ -32,7 +32,7 @@
         <mapper resource="mapping/UserDAOMapper.xml"/>
         <mapper resource="mapping/RoleDAOMapper.xml"/>
         <mapper resource="mapping/RightDAOMapper.xml"/>
-        <mapper resource="mapping/UserRoleMapper.xml"/>
+        <mapper resource="mapping/UserRoleDAOMapper.xml"/>
         <mapper resource="mapping/UserRightDAOMapper.xml"/>
         <mapper resource="mapping/DepartmentDAOMapper.xml"/>
     </mappers>

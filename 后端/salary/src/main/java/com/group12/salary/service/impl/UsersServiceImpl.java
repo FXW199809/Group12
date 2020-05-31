@@ -20,7 +20,7 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private RightDAOMapper rightDao;
     @Autowired
-    private UserRoleMapper userRoleDao;
+    private UserRoleDAOMapper userRoleDao;
     @Autowired
     private UserRightDAOMapper userRightDao;
 
@@ -32,22 +32,18 @@ public class UsersServiceImpl implements UsersService {
     //根据用户id查找用户角色
     public Set<String> findRole(String userId){
         Set<String> roleNameSet = new HashSet<>();
-        List<UserRole> userRoleList = userRoleDao.selectByUserID(userId);
-        for(int i = 0; i < userRoleList.size(); i++){
-            RoleDAO role = roleDao.selectByPrimaryKey(userRoleList.get(i).getRoleId());
-            roleNameSet.add(role.getRoleName());
-        }
+        UserRoleDAO userRoleList = userRoleDao.selectByUserID(userId);
+        RoleDAO role = roleDao.selectByPrimaryKey(userRoleList.getRoleId());
+        roleNameSet.add(role.getRoleName());
         return roleNameSet;
     }
 
     //根据用户名查找用户权限
     public Set<String> findRight(String userid){
         Set<String> rightNameSet = new HashSet<>();
-        List<UserRightDAO> userRightDAOList = userRightDao.selectByUserID(userid);
-        for(int i = 0; i < userRightDAOList.size(); i++){
-            RightDAO right = rightDao.selectByPrimaryKey(userRightDAOList.get(i).getRightId());
-            rightNameSet.add(right.getRightName());
-        }
+        UserRightDAO userRightDAOList = userRightDao.selectByUserID(userid);
+        RightDAO right = rightDao.selectByPrimaryKey(userRightDAOList.getRightId());
+        rightNameSet.add(right.getRightName());
         return rightNameSet;
     }
     //省略set方法

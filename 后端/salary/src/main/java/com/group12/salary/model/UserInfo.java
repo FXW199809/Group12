@@ -6,14 +6,18 @@ public class UserInfo {
     private String password;
     private String email;
     private String telephone;
-    private String BankCard;
+    private String bankCard;
     private String department_name;
     private String title;
     private Integer working_age;
     private String right_name;
+    private String degree;
+    private String nation;
+    private String origin;
+    private String idCard;
 
     public void setBankCard(String bankCard) {
-        BankCard = bankCard;
+        this.bankCard = bankCard;
     }
 
     public void setDepartment_name(String department_name) {
@@ -52,8 +56,24 @@ public class UserInfo {
         this.working_age = working_age;
     }
 
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
     public String getBankCard() {
-        return BankCard;
+        return bankCard;
     }
 
     public String getDepartment_name() {
@@ -90,5 +110,21 @@ public class UserInfo {
 
     public Integer getWorking_age() {
         return working_age;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public String getOrigin() {
+        return origin;
     }
 }

@@ -5,18 +5,28 @@
         <router-link to="/InsertStaff"><i class="el-icon-plus"></i>点击新增员工</router-link></el-button>
     </div>
     <div class="table-center">
-      <el-table :data="tableData.slice((currpage-1)*pagesize,currpage*pagesize)" min-height="350" border style="width: 100%">
+      <el-table 
+      :data="tableData.slice((currpage-1)*pagesize,currpage*pagesize)" 
+      min-height="350" 
+      border 
+      style="width: 100%">
             <el-table-column prop="userId" label="职工号" width="100"> </el-table-column>
             <el-table-column prop="name" label="姓名" width="100"> </el-table-column>
             <el-table-column prop="password" label="密码" width="140"> </el-table-column>
+            <!--新增-->
+            <el-table-column prop="idCard" label="身份证号" width="170"> </el-table-column>
+            <el-table-column prop="origin" label="籍贯" width="140"> </el-table-column>
+            <el-table-column prop="nation" label="民族" width="140"> </el-table-column>
+            <el-table-column prop="degree" label="最高学位" width="140"> </el-table-column>
+
             <el-table-column prop="email" label="邮箱" width="160"> </el-table-column>
             <el-table-column prop="telephone" label="电话" width="140"> </el-table-column>
-            <el-table-column prop="BankCard" label="银行卡" width="200"> </el-table-column>
+            <el-table-column prop="bankCard" label="银行卡" width="200"> </el-table-column>
             <el-table-column prop="department_name" label="所属院系" width="140"> </el-table-column>
             <el-table-column prop="title" label="职称" width="100"> </el-table-column>
             <el-table-column prop="working_age" label="工龄" width="100"> </el-table-column>
             <el-table-column prop="right_name" label="权限" width="100"> </el-table-column>
-            
+            <!-- 操作-->
             <el-table-column fixed="right" label="操作" width="150" align="center">
               <template scope="scope">
                 <el-button size="mini" class="Del-com" @click="DelTabColOne(scope.$index,scope.row)" ><i class="el-icon-delete"></i></el-button>
@@ -44,7 +54,7 @@
      <el-button type="primary" @click="deleteRow">确 定</el-button>
      </span>
   </el-dialog>
-    
+  <!-- 修改用户-->  
 <el-dialog title="编辑用户信息" :visible="editUserForm" size="tiny" :modal-append-to-body='false' @close='closeDialog'>
   <el-form ref="editsForm" :model="editsForm" label-width="80px">
     <el-form-item label="职工号">
@@ -53,29 +63,61 @@
     <el-form-item label="姓名">
       <el-input v-model="editsForm.name" disabled="disabled"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="editsForm.password"></el-input>
+    <el-form-item label="院系">
+      <el-input v-model="editsForm.department_name" disabled="disabled"></el-input>
     </el-form-item>
+    
+    <el-form-item label="密码">
+      <el-input type="password" v-model="editsForm.password" disabled="disabled"></el-input>
+    </el-form-item>
+<!-- 新增 -->
+    <el-form-item label="身份证号">
+      <el-input v-model="editsForm.idCard" disabled="disabled"></el-input>
+    </el-form-item>
+    <el-form-item label="籍贯">
+      <el-input v-model="editsForm.origin" disabled="disabled"></el-input>
+    </el-form-item>
+    <el-form-item label="民族">
+      <el-input v-model="editsForm.nation" disabled="disabled"></el-input>
+    </el-form-item>
+    <el-form-item label="最高学位">
+      <el-radio-group v-model="editsForm.degree">
+          <el-radio label="学士"></el-radio>
+          <el-radio label="硕士"></el-radio>
+          <el-radio label="博士"></el-radio>
+      </el-radio-group>
+      <!--
+      <el-input v-model="editsForm.XueWei" disabled="disabled"></el-input>
+      -->
+    </el-form-item>
+
+
     <el-form-item label="邮箱">
-      <el-input v-model="editsForm.email"></el-input>
+      <el-input type="email" v-model="editsForm.email"></el-input>
     </el-form-item>
     <el-form-item label="电话">
-      <el-input v-model="editsForm.telephone"></el-input>
+      <el-input v-model="editsForm.telephone" onkeyup="value=value.replace(/[^\d]/g,'')" oninput="if(value.length>11)value=value.slice(0,11)"></el-input>
     </el-form-item>
     <el-form-item label="银行卡">
-      <el-input v-model="editsForm.bankcard"></el-input>
-    </el-form-item>
-    <el-form-item label="院系">
-      <el-input v-model="editsForm.department_name"></el-input>
+      <el-input v-model="editsForm.bankCard" onkeyup="value=value.replace(/[^\d]/g,'')" oninput="if(value.length>19)value=value.slice(0,19)"></el-input>
     </el-form-item>
     <el-form-item label="职称">
-      <el-input v-model="editsForm.title"></el-input>
+      <el-radio-group v-model="editsForm.title">
+                <el-radio label="助教"></el-radio>
+                <el-radio label="讲师"></el-radio>
+                <el-radio label="副教授"></el-radio>
+                <el-radio label="教授"></el-radio>
+                </el-radio-group>
     </el-form-item>
     <el-form-item label="工龄">
-      <el-input v-model="editsForm.working_age"></el-input>
+      <el-input-number v-model="editsForm.working_age" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
     </el-form-item>
     <el-form-item label="权限">
-      <el-input v-model="editsForm.right_name"></el-input>
+          <el-radio-group v-model="editsForm.right_name">
+                <el-radio label="登录"></el-radio>
+                <el-radio label="上传"></el-radio>
+                <el-radio label="管理"></el-radio>
+          </el-radio-group>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="updateUser()">确定</el-button>
@@ -96,15 +138,39 @@ export default {
           userId:'',
           name:'',
           password:"",
+          idCard: '',
+          origin: '',
+          nation: '', 
+          degree: '',
           email:'',
           telephone:'',
-          bankcard:'',
+          bankCard:'',
           department_name:'',
           title:'',
           working_age:'',
           right_name:'',
         },
-        tableData: [],
+        tableData: [
+          {
+            userId:'20171104',
+            name:'潘成花',
+            password:'psd1234',
+
+            idCard:'620121199907275023',
+            origin:'甘肃兰州',
+            nation:'汉族',
+            degree:'博士',
+
+            email:'1105504914@qq.com',
+            telephone:'18198015646',
+            bankCard:'1389027490324',
+            right_name:'登录',
+            title:'教授',
+            working_age:2,
+            department_name:'计算机科学学院'
+
+          }
+        ],
         //接收指定删除数据的userid
         listId:'',
         //接收指定删除数据的的索引
@@ -118,7 +184,7 @@ export default {
   }
   },
   methods: {
-    //获取数据库信息
+    //获取用户表信息
     getData:function(){
       Vue.axios.get('/getUserInfoList').then((response) => (
                 // then 指成功之后的回调 (注意：使用箭头函数，可以不考虑this指向)
@@ -161,31 +227,7 @@ export default {
                   this.getData();
                   })
                 .catch(_ => {"内部异常"});
-
-/*
-              this.$http.get('/deleteUser'+this.listId) //向后台发送get请求带参数，后台接相应参数
-              //的不加注解,原因见(https://blog.csdn.net/duduyingya/article/details/104556665)
-                  .then(response =>{
-                      if(response.data.code===0){
-                        //在表格中(装表格中数据的数组中)删除选中的行
-                        this.tableData.splice(this.listIndex,1);
-                        alert("删除成功！");
-                      }
-                  })
-                  .catch(error =>{
-                      console.log(error);
-                  });*/
             },
-
-
-    /*DelTabColOne(){
-      Vue.axios.post('/deleteUser',{params:{ UserId: this.UserId }}).then(_ =>{
-          
-        alert("删除成功！")
-
-        })
-        .catch(_ => {"内部异常"});
-        },*/
       // 点击模态框关闭按钮关闭模态框
       closeDialog(){
         this.editUserForm = false;
@@ -193,7 +235,7 @@ export default {
           // 点击编辑按钮
           UpdTabColOne(index,row){
           this.editUserForm = true; //编辑信息模态框显示
-          this.editsForm = Object.assign({}, row);  获得所有数据显示在编辑信息模态框里面
+          this.editsForm = Object.assign({}, row);  //获得所有数据显示在编辑信息模态框里面
           },
           // 点击编辑信息弹框的确定按钮
           updateUser() {
@@ -203,12 +245,16 @@ export default {
             name:this.editsForm.name,
             email:this.editsForm.email,
             telephone:this.editsForm.telephone,
-            bankCard:this.editsForm.bankcard,
+            bankCard:this.editsForm.bankCard,
             departmentName:this.editsForm.department_name,
             title:this.editsForm.title,
             workingAge:this.editsForm.working_age,
             right_name:this.editsForm.right_name,
-            
+            //新增用户信息列
+            id_card:this.editsForm.idCard,
+            degree:this.editsForm.degree,
+            nation:this.editsForm.nation,
+            origin:this.editsForm.origin
         })
         this.$axios({
             method: 'post',

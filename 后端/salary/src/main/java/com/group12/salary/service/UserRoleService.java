@@ -1,9 +1,9 @@
 package com.group12.salary.service;
 
-import com.group12.salary.model.UserRole;;
+import com.group12.salary.model.UserRoleDAO;
 public interface UserRoleService {
-	int add(UserRole userRole);
-	int update(UserRole userRole);
+	int add(UserRoleDAO userRole);
+	int update(UserRoleDAO userRole);
 	int delete(long userRoleId);
-	UserRole findByUserId(long userRoleId);
+	UserRoleDAO findByUserId(long userRoleId);
 }
