@@ -112,7 +112,7 @@
          res=>{
           //if(this.form.oldPassword!==this.form.newPassword)
           if(res.data==200){
-            this.$router.push('/login');
+            this.$router.push('/');
             this.$message.success('修改密码成功');
           }else{
             this.$message.error('不存在，错误');

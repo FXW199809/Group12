@@ -60,7 +60,7 @@ public class LoginController {
     }*/
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping(value="/login",produces = "application/json;charset=utf-8")
-    public String login(String name, String password,String title) throws IOException {
+    public String login(String name, String password) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
 
         UserDAOMapper userDAOMapper = sqlSession.getMapper(UserDAOMapper.class);
@@ -77,7 +77,7 @@ public class LoginController {
         UserRightDAOExample UserRightDAOExample = new UserRightDAOExample();
         UserRightDAOExample.Criteria criteria1 = UserRightDAOExample.createCriteria();
         criteria1.andUserIdIsNotNull();
-        List<UserRightDAO> UserRightDAOList = userRightDAOMapper.selectByExample(UserRightDAOExample);
+        //List<UserRightDAO> UserRightDAOList = userRightDAOMapper.selectByExample(UserRightDAOExample);
         for (int i = 0; i < userDAOList.size(); i++) {
             System.out.println(userDAOList.get(i).getPassword());
             if(userDAOList.get(i).getPassword().equals(password)){

@@ -8,7 +8,7 @@
         <el-form-item label="密码" prop="password">
           <el-input id="password" v-model="loginForm.password" placeholder="请输入密码" type="password"></el-input>
         </el-form-item>
-
+        <!--
         <el-form-item >
           <el-radio-group v-model="loginForm.radio">
             <el-radio label="用户"></el-radio>
@@ -16,7 +16,7 @@
             <el-radio label="财务"></el-radio>
           </el-radio-group>
         </el-form-item>
-
+        -->
         <!-- <el-radio-group v-model="radio">
           <el-radio :label="3">用户</el-radio>
           <el-radio :label="6">院系</el-radio>
@@ -45,8 +45,8 @@
         //登录表单的数据绑定对象
         loginForm:{
           name:'',
-          password:'',
-          radio:''
+          password:''
+          //radio:''
         },
         //表单验证
         loginFormRules:{
@@ -97,7 +97,7 @@
             name:this.loginForm.name,
             password:this.loginForm.password,
 
-            radio:this.loginForm.radio
+            //radio:this.loginForm.radio
 
           }
         }

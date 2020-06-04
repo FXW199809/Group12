@@ -5,6 +5,7 @@ import com.group12.salary.dao.UserDAOMapper;
 import com.group12.salary.model.UserDAO;
 import com.group12.salary.model.UserDAOExample;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,7 +44,7 @@ public class UpdatePassController {
         return 200;
 
     }*/
-
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/change")
     public int UpdatePass(String userID,String oldPassword,String newPassword,String ckPassword) throws IOException {
         SqlSession sqlSession = MapperTools.getSqlSession();
