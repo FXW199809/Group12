@@ -35,5 +35,9 @@
         <mapper resource="mapping/UserRoleDAOMapper.xml"/>
         <mapper resource="mapping/UserRightDAOMapper.xml"/>
         <mapper resource="mapping/DepartmentDAOMapper.xml"/>
+        <mapper resource="mapping/ActionDAOMapper.xml"/>
+        <mapper resource="mapping/CodeDAOMapper.xml"/>
+        <mapper resource="mapping/InterfaceDAOMapper.xml"/>
+        <mapper resource="mapping/TimeDAOMapper.xml"/>
     </mappers>
 </configuration>

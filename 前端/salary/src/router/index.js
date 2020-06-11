@@ -24,6 +24,9 @@ import doc2 from '@/components/doc2.vue'
 import doc3 from '@/components/doc3.vue'
 import doc4 from '@/components/doc4.vue'
 import Change from '../components/Change.vue'
+
+import Search from '@/components/Search.vue'
+import Total from '@/components/Total.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -36,6 +39,14 @@ export default new Router({
     {
       path:'/change',
       component:Change
+    },
+    {
+      path:'/Search',
+      component:Search
+    },
+    {
+      path:'/Total',
+      component:Total
     },
     {
       path: '/HelloWorld',
